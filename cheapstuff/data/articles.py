@@ -5,6 +5,7 @@ from itertools import product
 from mysql.connector import MySQLConnection
 from mysql.connector.errors import ProgrammingError
 
+
 class Article:
     def __init__(self, title: str, price: dict, url: str, date_scraped: datetime.now,
                  origin: str, shipping_cost=None, currency=None):
