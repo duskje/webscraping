@@ -16,5 +16,3 @@ class Aliexpress(Website):
         url = self.search_url + '-'.join()
 
         return url
-
-
