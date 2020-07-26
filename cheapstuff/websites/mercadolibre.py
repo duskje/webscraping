@@ -38,7 +38,6 @@ class Mercadolibre(Website):
         }
 
     def get_articles(self, search_terms: str) -> Generator[Article, None, None]:
-
         soup = self.get_soup(search_terms)
         unparsed_articles = soup.find_all('div', class_='ui-search-result__content-wrapper')
 
@@ -48,6 +47,6 @@ class Mercadolibre(Website):
             yield Article(
                 origin=self.name,
                 currency=self.currency,
-                date_scraped=datetime.now,
+                date_scraped=datetime.now(),
                 **parsed
             )

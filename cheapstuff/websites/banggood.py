@@ -52,7 +52,7 @@ class Banggood(Website):
             yield Article(
                 origin=self.name,
                 currency=self.currency,
-                date_scraped=datetime.now,
+                date_scraped=datetime.now(),
                 **parsed
             )
 
