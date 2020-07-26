@@ -1,6 +1,5 @@
 from typing import Iterable
 from datetime import datetime
-from itertools import product
 
 from mysql.connector import MySQLConnection
 from mysql.connector.errors import ProgrammingError
@@ -47,13 +46,17 @@ class Article:
         return {key: cif[key] * taxes_percentage for key in cif}
 
     def save_into_database(self, sql_cursor: MySQLConnection, values: Iterable, force: bool=False) -> None:
-        """" I can't explain it right now """
+        """
+        Takes a SQL cursor object and an iterable object that contains the values to add into the database
+        """
         object_dict = self.__dict__
 
         object_keys = set(object_dict.keys())
 
-        matching_keys = frozenset( object_keys.intersection( set(values) ) )
+        matching_keys = frozenset(object_keys & set(values))
         matching_object_dict = {key: object_dict[key] for key in matching_keys}
+
+        print("Warning: The following values don't match the object:", *(set(values) - object_keys))
 
         # this looked like a very good idea two teas ago, guess not
         # TODO: Refactor this gross sql query
