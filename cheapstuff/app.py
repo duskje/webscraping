@@ -1,15 +1,16 @@
-from websites import Banggood, Mercadolibre
+from websites import Banggood, Mercadolibre, Aliexpress
 import mysql.connector
 import click
 
+# TODO: Switch to sqlite
 
 @click.command()
 @click.option('--search', '-s', help='Search Terms')
 def main(search):
-    websites = frozenset([
+    websites = frozenset((
         Banggood(),
         Mercadolibre(),
-    ])
+    ))
 
     conn = mysql.connector.connect(
         host='localhost',
